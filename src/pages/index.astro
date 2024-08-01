@@ -1,11 +1,21 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { HOMEPAGE_URL, SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Body from '../components/Body.astro'
 import Content from '../components/Content.astro'
+import { Image } from 'astro:assets';
 import Masthead from '../components/Masthead.astro'
+import { IoArrowForward } from 'react-icons/io5';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+
+const posts = (await Astro.glob('./posts/*.md')).sort(
+  (a: any, b: any) => 
+    new Date(b.frontmatter.createdAt).valueOf() -
+    new Date(a.frontmatter.createdAt).valueOf())
 ---
 
 <!doctype html>
@@ -19,12 +29,48 @@ import Masthead from '../components/Masthead.astro'
       <Masthead />
       <Content>
         <section>
-          <h1>🧑‍🚀 Hello, Astronaut!</h1>
-			    <p>
-				    Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				    template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				    a personal website, blog, or portfolio with Astro.
-          </p>
+          <p class="mb-8 indent-4">
+          As an indie developer, I&apos;ve been spending hours and 
+          hours at my desk every day. So, I&apos;ve been continuosly improving my
+          workspace in order to boost my productivity.
+          Here is a living snapshot and a place to point curious developers to when I get asked.
+          Most of the links are amazon affiliate link , so I&apos;ll get filthy rich if you click them and buy somenthing.
+          <a href={HOMEPAGE_URL}
+             class="inline-flex items-center gap-1 indent-1 text-orange-500"
+            >
+            Learn more about me <IoArrowForward className="inline"/>
+          </a>
+				  </p>
+        </section>
+        <section>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {
+              posts.map(post => {
+                const heroImageAsset = images[post.frontmatter.heroImage]
+                const heroImageSrc = heroImageAsset ? 
+                heroImageAsset(): post.frontmatter.heroImage
+                return (
+                  <a href={post.url}>
+                    <Image 
+                      class="border border-slate-300 dark:border-zinc-700 rounded-xl"
+                      src={heroImageSrc}
+                      width={720}
+                      height={720 / 1.777}
+                      alt="Thumbnail"
+                      />
+                    <div class="mt-3 text-xl font-bold">
+                      {post.frontmatter.title}
+                    </div>
+                    {post.frontmatter.description && (
+                    <div class="opacity-70">
+                      {post.frontmatter.description}
+                    </div>
+                    )}
+                  </a>
+                )
+                })
+            }
+          </ul>
         </section>
       </Content>
 		</main>

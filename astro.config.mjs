@@ -14,4 +14,6 @@ export default defineConfig({
     image({ entryPoint: "/_image" }),
     tailwind(),
   ],
+
+  markdown: {},
 });
