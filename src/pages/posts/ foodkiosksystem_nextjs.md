@@ -7,7 +7,7 @@ createdAt: 1663138523826
 updatedAt: 1683767730186
 tags:
   - Next
-heroImage: /posts/uptaskmanager/frontend_all_project_responsive.png
+heroImage: /posts/
 slug: frontend_add_collab_responsive
 ---
 

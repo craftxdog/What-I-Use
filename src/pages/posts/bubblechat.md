@@ -14,7 +14,7 @@ slug: Principal_image_portada
 <section class="relative mb-6 h-80 flex justify-center items-center">
 <div class="absolute w-full h-full overflow-hidden">
   <video
-    class="border absolute inset-0 min-w-full min-h-full object-cover opacity-80 rounded-xl"
+    class="border absolute inset-0 min-w-full min-h-full object-cover opacity-95 rounded-xl"
     poster="/Hooks.png"
     autoplay="autoplay"
     muted="muted"
