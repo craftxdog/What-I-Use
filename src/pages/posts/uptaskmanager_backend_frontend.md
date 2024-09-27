@@ -2,7 +2,7 @@
 description: MERN STACK (Mongo, Express, React, Node)
 public: true
 layout: ../../layouts/BlogPost.astro
-title: UpTaskManager
+title: UpTask Manager
 createdAt: 1663138523826
 updatedAt: 1683767730186
 tags:
