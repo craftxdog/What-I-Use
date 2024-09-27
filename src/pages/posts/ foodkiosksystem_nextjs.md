@@ -7,7 +7,7 @@ createdAt: 1663138523826
 updatedAt: 1683767730186
 tags:
   - Next
-heroImage: /posts/
+heroImage: /astrojs.jpg
 slug: frontend_add_collab_responsive
 ---
 
